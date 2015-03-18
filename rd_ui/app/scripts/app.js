@@ -14,7 +14,8 @@ angular.module('redash', [
     'smartTable.table',
     'ngResource',
     'ngRoute',
-    'ui.select'
+    'ui.select',
+    'naif.base64'
   ]).config(['$routeProvider', '$locationProvider', '$compileProvider', 'growlProvider',
     function ($routeProvider, $locationProvider, $compileProvider, growlProvider) {
       if (featureFlags.clientSideMetrics) {
@@ -80,9 +81,13 @@ angular.module('redash', [
         templateUrl: '/views/admin_status.html',
         controller: 'AdminStatusCtrl'
       });
-      $routeProvider.when('/admin/workers', {
-        templateUrl: '/views/admin_workers.html',
-        controller: 'AdminWorkersCtrl'
+      $routeProvider.when('/data_sources/:dataSourceId', {
+        templateUrl: '/views/data_sources/edit.html',
+        controller: 'DataSourceCtrl'
+      });
+      $routeProvider.when('/data_sources', {
+        templateUrl: '/views/data_sources/list.html',
+        controller: 'DataSourcesCtrl'
       });
 
       $routeProvider.when('/', {
