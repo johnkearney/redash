@@ -6,7 +6,7 @@ from statsd import StatsClient
 from redash import settings
 from redash.query_runner import import_query_runners
 
-__version__ = '0.6.4'
+__version__ = '0.7.0'
 
 
 def setup_logging():
