@@ -105,17 +105,17 @@
     }
   };
 
-  var Filters = function () {
+  var Filters = function (REDASH_ROOT) {
     return {
       restrict: 'E',
-      templateUrl: '/views/visualizations/filters.html'
+      templateUrl: REDASH_ROOT + 'views/visualizations/filters.html'
     }
   }
 
-  var EditVisualizationForm = function (Events, Visualization, growl) {
+  var EditVisualizationForm = function (Events, Visualization, growl, REDASH_ROOT) {
     return {
       restrict: 'E',
-      templateUrl: '/views/visualizations/edit_visualization.html',
+      templateUrl: REDASH_ROOT + 'views/visualizations/edit_visualization.html',
       replace: true,
       scope: {
         query: '=',
@@ -196,6 +196,6 @@
       .directive('visualizationRenderer', ['$location', 'Visualization', VisualizationRenderer])
       .directive('visualizationOptionsEditor', ['Visualization', VisualizationOptionsEditor])
       .directive('visualizationName', ['Visualization', VisualizationName])
-      .directive('filters', Filters)
-      .directive('editVisulatizationForm', ['Events', 'Visualization', 'growl', EditVisualizationForm])
+      .directive('filters', ['REDASH_ROOT', Filters])
+      .directive('editVisulatizationForm', ['Events', 'Visualization', 'growl', 'REDASH_ROOT', EditVisualizationForm])
 })();

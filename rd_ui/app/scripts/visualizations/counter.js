@@ -22,10 +22,10 @@
     }
   ]);
 
-  module.directive('counterRenderer', function() {
+  module.directive('counterRenderer', ['REDASH_ROOT', function(REDASH_ROOT) {
     return {
       restrict: 'E',
-      templateUrl: '/views/visualizations/counter.html',
+      templateUrl: REDASH_ROOT + 'views/visualizations/counter.html',
       link: function($scope, elm, attrs) {
         $scope.visualization.options.rowNumber =
           $scope.visualization.options.rowNumber || 0;
@@ -49,13 +49,13 @@
           }, true);
       }
     }
-  });
+  }]);
 
-  module.directive('counterEditor', function() {
+  module.directive('counterEditor', ['REDASH_ROOT', function(REDASH_ROOT) {
     return {
       restrict: 'E',
-      templateUrl: '/views/visualizations/counter_editor.html'
+      templateUrl: REDASH_ROOT + 'views/visualizations/counter_editor.html'
     }
-  });
+  }]);
 
 })();

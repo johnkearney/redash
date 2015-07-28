@@ -26,10 +26,10 @@
   }
   ]);
 
-  module.directive('mapRenderer', function() {
+  module.directive('mapRenderer', ['REDASH_ROOT', function(REDASH_ROOT) {
     return {
       restrict: 'E',
-      templateUrl: '/views/visualizations/map.html',
+      templateUrl: REDASH_ROOT + 'views/visualizations/map.html',
       link: function($scope, elm, attrs) {
 
         var setBounds = function(){
@@ -222,17 +222,17 @@
         });
       }
     }
-  });
+  }]);
 
-  module.directive('mapEditor', function() {
+  module.directive('mapEditor', ['REDASH_ROOT', function(REDASH_ROOT) {
     return {
       restrict: 'E',
-      templateUrl: '/views/visualizations/map_editor.html',
+      templateUrl: REDASH_ROOT + 'views/visualizations/map_editor.html',
       link: function($scope, elm, attrs) {
         $scope.draw_options = ['Marker','Color'];
         $scope.classify_columns = $scope.queryResult.columnNames.concat('none');
       }
     }
-  });
+  }]);
 
 })();

@@ -217,7 +217,7 @@
       };
 
       $modal.open({
-        templateUrl: '/views/schedule_form.html',
+        templateUrl: REDASH_ROOT + 'views/schedule_form.html',
         size: 'sm',
         scope: $scope,
         controller: ['$scope', '$modalInstance', function($scope, $modalInstance) {

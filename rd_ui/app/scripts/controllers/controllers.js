@@ -6,7 +6,7 @@
     return value.toDate().toLocaleString();
   };
 
-  var QuerySearchCtrl = function($scope, $location, $filter, Events, Query) {
+  var QuerySearchCtrl = function($scope, $location, $filter, Events, Query, REDASH_ROOT) {
     $scope.$parent.pageTitle = "Queries Search";
 
     $scope.gridConfig = {
@@ -19,7 +19,7 @@
       {
         "label": "Name",
         "map": "name",
-        "cellTemplateUrl": "/views/queries_query_name_cell.html"
+        "cellTemplateUrl": REDASH_ROOT + "views/queries_query_name_cell.html"
       },
       {
         'label': 'Created By',
@@ -61,7 +61,7 @@
     Events.record(currentUser, "search", "query", "", {"term": $scope.term});
   };
 
-  var QueriesCtrl = function ($scope, $http, $location, $filter, Query) {
+  var QueriesCtrl = function ($scope, $http, $location, $filter, Query, REDASH_ROOT) {
     $scope.$parent.pageTitle = "All Queries";
     $scope.gridConfig = {
       isPaginationEnabled: true,
@@ -102,7 +102,7 @@
       {
         "label": "Name",
         "map": "name",
-        "cellTemplateUrl": "/views/queries_query_name_cell.html"
+        "cellTemplateUrl": REDASH_ROOT + "views/queries_query_name_cell.html"
       },
       {
         'label': 'Created By',
@@ -223,9 +223,9 @@
   };
 
   angular.module('redash.controllers', [])
-    .controller('QueriesCtrl', ['$scope', '$http', '$location', '$filter', 'Query', QueriesCtrl])
+    .controller('QueriesCtrl', ['$scope', '$http', '$location', '$filter', 'Query', 'REDASH_ROOT', QueriesCtrl])
     .controller('IndexCtrl', ['$scope', 'Events', 'Dashboard', IndexCtrl])
     .controller('PersonalIndexCtrl', ['$scope', 'Events', 'Dashboard', 'Query', PersonalIndexCtrl])
     .controller('MainCtrl', ['$scope', '$location', 'Dashboard', 'notifications', MainCtrl])
-    .controller('QuerySearchCtrl', ['$scope', '$location', '$filter', 'Events', 'Query',  QuerySearchCtrl]);
+    .controller('QuerySearchCtrl', ['$scope', '$location', '$filter', 'Events', 'Query', 'REDASH_ROOT',  QuerySearchCtrl]);
 })();

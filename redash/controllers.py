@@ -1,9 +1,3 @@
-"""
-Flask-restful based API implementation for re:dash.
-
-Currently the Flask server is used to serve the static assets (and the Angular.js app),
-but this is only due to configuration issues and temporary.
-"""
 import csv
 import hashlib
 import json
@@ -59,7 +53,8 @@ def index(**kwargs):
     }
 
     features = {
-        'clientSideMetrics': settings.CLIENT_SIDE_METRICS
+        'clientSideMetrics': settings.CLIENT_SIDE_METRICS,
+        'staticRoot': '/static/'
     }
 
     return render_template("index.html", user=json.dumps(user), name=settings.NAME,
@@ -710,12 +705,3 @@ api.add_resource(AlertAPI, '/api/alerts/<alert_id>', endpoint='alert')
 api.add_resource(AlertSubscriptionListResource, '/api/alerts/<alert_id>/subscriptions', endpoint='alert_subscriptions')
 api.add_resource(AlertSubscriptionResource, '/api/alerts/<alert_id>/subscriptions/<subscriber_id>', endpoint='alert_subscription')
 api.add_resource(AlertListAPI, '/api/alerts', endpoint='alerts')
-
-@app.route('/<path:filename>')
-def send_static(filename):
-    if current_app.debug:
-        cache_timeout = 0
-    else:
-        cache_timeout = None
-
-    return send_from_directory(settings.STATIC_ASSETS_PATH, filename, cache_timeout=cache_timeout)

@@ -10,14 +10,14 @@
     });
   }]);
 
-  tableVisualization.directive('gridRenderer', function () {
+  tableVisualization.directive('gridRenderer', ['REDASH_ROOT', function (REDASH_ROOT) {
     return {
       restrict: 'E',
       scope: {
         queryResult: '=',
         itemsPerPage: '='
       },
-      templateUrl: "/views/grid_renderer.html",
+      templateUrl: REDASH_ROOT + "views/grid_renderer.html",
       replace: false,
       controller: ['$scope', '$filter', function ($scope, $filter) {
         $scope.gridColumns = [];
@@ -105,5 +105,5 @@
         });
       }]
     }
-  })
+  }])
 }());

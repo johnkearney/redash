@@ -4,11 +4,11 @@
   var directives = angular.module('redash.directives');
 
   // Angular strips data- from the directive, so data-source-form becomes sourceForm...
-  directives.directive('sourceForm', ['$http', 'growl', function ($http, growl) {
+  directives.directive('sourceForm', ['$http', 'growl', 'REDASH_ROOT', function ($http, growl, REDASH_ROOT) {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/views/data_sources/form.html',
+      templateUrl: REDASH_ROOT + 'views/data_sources/form.html',
       scope: {
         'dataSource': '='
       },

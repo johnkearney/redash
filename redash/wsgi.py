@@ -7,7 +7,6 @@ from redash import settings, utils, mail
 from redash.models import db
 from redash.admin import init_admin
 
-
 __version__ = '0.4.0'
 
 app = Flask(__name__,

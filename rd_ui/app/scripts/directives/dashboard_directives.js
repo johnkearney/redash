@@ -3,14 +3,14 @@
 
   var directives = angular.module('redash.directives');
 
-  directives.directive('editDashboardForm', ['Events', '$http', '$location', '$timeout', 'Dashboard',
-    function(Events, $http, $location, $timeout, Dashboard) {
+  directives.directive('editDashboardForm', ['Events', '$http', '$location', '$timeout', 'Dashboard', 'REDASH_ROOT',
+    function(Events, $http, $location, $timeout, Dashboard, REDASH_ROOT) {
       return {
         restrict: 'E',
         scope: {
           dashboard: '='
         },
-        templateUrl: '/views/edit_dashboard.html',
+        templateUrl: REDASH_ROOT + 'views/edit_dashboard.html',
         replace: true,
         link: function($scope, element, attrs) {
           var gridster = element.find(".gridster ul").gridster({
@@ -112,14 +112,14 @@
     }
   ]);
 
-  directives.directive('newWidgetForm', ['Query', 'Widget', 'growl',
-    function(Query, Widget, growl) {
+  directives.directive('newWidgetForm', ['Query', 'Widget', 'growl', 'REDASH_ROOT',
+    function(Query, Widget, growl, REDASH_ROOT) {
       return {
         restrict: 'E',
         scope: {
           dashboard: '='
         },
-        templateUrl: '/views/new_widget_form.html',
+        templateUrl: REDASH_ROOT + 'views/new_widget_form.html',
         replace: true,
         link: function($scope, element, attrs) {
           $scope.widgetSizes = [{

@@ -77,10 +77,10 @@
     };
   });
 
-  chartVisualization.directive('chartEditor', function (ColorPalette) {
+  chartVisualization.directive('chartEditor', ['REDASH_ROOT', function (REDASH_ROOT, ColorPalette) {
     return {
       restrict: 'E',
-      templateUrl: '/views/visualizations/chart_editor.html',
+      templateUrl: REDASH_ROOT + 'views/visualizations/chart_editor.html',
       link: function (scope, element, attrs) {
         scope.palette = ColorPalette;
 
@@ -255,5 +255,5 @@
         });
       }
     }
-  });
+  }]);
 }());

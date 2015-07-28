@@ -16,8 +16,9 @@ angular.module('redash', [
     'ngRoute',
     'ui.select',
     'naif.base64'
-  ]).config(['$routeProvider', '$locationProvider', '$compileProvider', 'growlProvider',
-    function ($routeProvider, $locationProvider, $compileProvider, growlProvider) {
+  ]).constant('REDASH_ROOT', featureFlags.staticRoot)
+    .config(['$routeProvider', '$locationProvider', '$compileProvider', 'growlProvider', 'REDASH_ROOT',
+    function ($routeProvider, $locationProvider, $compileProvider, growlProvider, REDASH_ROOT) {
       if (featureFlags.clientSideMetrics) {
         Bucky.setOptions({
           host: '/api/metrics'
@@ -37,17 +38,17 @@ angular.module('redash', [
       growlProvider.globalTimeToLive(2000);
 
       $routeProvider.when('/dashboard/:dashboardSlug', {
-        templateUrl: '/views/dashboard.html',
+        templateUrl: REDASH_ROOT + 'views/dashboard.html',
         controller: 'DashboardCtrl',
         reloadOnSearch: false
       });
       $routeProvider.when('/queries', {
-        templateUrl: '/views/queries.html',
+        templateUrl: REDASH_ROOT + 'views/queries.html',
         controller: 'QueriesCtrl',
         reloadOnSearch: false
       });
       $routeProvider.when('/queries/new', {
-        templateUrl: '/views/query.html',
+        templateUrl: REDASH_ROOT + 'views/query.html',
         controller: 'QuerySourceCtrl',
         reloadOnSearch: false,
         resolve: {
@@ -57,12 +58,12 @@ angular.module('redash', [
         }
       });
       $routeProvider.when('/queries/search', {
-        templateUrl: '/views/queries_search_results.html',
+        templateUrl: REDASH_ROOT + 'views/queries_search_results.html',
         controller: 'QuerySearchCtrl',
         reloadOnSearch: true,
       });
       $routeProvider.when('/queries/:queryId', {
-        templateUrl: '/views/query.html',
+        templateUrl: REDASH_ROOT + 'views/query.html',
         controller: 'QueryViewCtrl',
         reloadOnSearch: false,
         resolve: {
@@ -70,7 +71,7 @@ angular.module('redash', [
         }
       });
       $routeProvider.when('/queries/:queryId/source', {
-        templateUrl: '/views/query.html',
+        templateUrl: REDASH_ROOT + 'views/query.html',
         controller: 'QuerySourceCtrl',
         reloadOnSearch: false,
         resolve: {
@@ -78,38 +79,38 @@ angular.module('redash', [
         }
       });
       $routeProvider.when('/admin/status', {
-        templateUrl: '/views/admin_status.html',
+        templateUrl: REDASH_ROOT + 'views/admin_status.html',
         controller: 'AdminStatusCtrl'
       });
 
       $routeProvider.when('/alerts', {
-        templateUrl: '/views/alerts/list.html',
+        templateUrl: REDASH_ROOT + 'views/alerts/list.html',
         controller: 'AlertsCtrl'
       });
       $routeProvider.when('/alerts/:alertId', {
-        templateUrl: '/views/alerts/edit.html',
+        templateUrl: REDASH_ROOT + 'views/alerts/edit.html',
         controller: 'AlertCtrl'
       });
 
       $routeProvider.when('/data_sources/:dataSourceId', {
-        templateUrl: '/views/data_sources/edit.html',
+        templateUrl: REDASH_ROOT + 'views/data_sources/edit.html',
         controller: 'DataSourceCtrl'
       });
       $routeProvider.when('/data_sources', {
-        templateUrl: '/views/data_sources/list.html',
+        templateUrl: REDASH_ROOT + 'views/data_sources/list.html',
         controller: 'DataSourcesCtrl'
       });
 
       $routeProvider.when('/', {
-        templateUrl: '/views/index.html',
+        templateUrl: REDASH_ROOT + 'views/index.html',
         controller: 'IndexCtrl'
       });
       $routeProvider.when('/personal', {
-        templateUrl: '/views/personal.html',
+        templateUrl: REDASH_ROOT + 'views/personal.html',
         controller: 'PersonalIndexCtrl'
       });
       $routeProvider.otherwise({
-        redirectTo: '/'
+        redirectTo: REDASH_ROOT
       });
 
 

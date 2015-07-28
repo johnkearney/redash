@@ -112,7 +112,7 @@
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: '/views/alerts/subscribers.html',
+      templateUrl: REDASH_ROOT + 'views/alerts/subscribers.html',
       scope: {
         'alertId': '='
       },
