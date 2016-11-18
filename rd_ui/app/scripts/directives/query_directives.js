@@ -157,6 +157,9 @@
   }
 
   function queryFormatter($http, growl) {
+    var unescape = function(convert){
+      return $("<span />", { html: convert }).text();
+    };
     return {
       restrict: 'E',
       // don't create new scope to avoid ui-codemirror bug
@@ -181,7 +184,7 @@
             $http.post('api/queries/format', {
               'query': $scope.query.query
             }).success(function (response) {
-              $scope.query.query = response;
+              $scope.query.query = unescape(response);
             }).finally(function () {
               $scope.queryFormatting = false;
             });
