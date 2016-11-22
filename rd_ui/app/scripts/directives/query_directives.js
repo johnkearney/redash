@@ -208,7 +208,7 @@
             $http.post('api/queries/format', {
               'query': $scope.query.query
             }).success(function (response) {
-              $scope.query.query = response;
+              $scope.query.query = response.query;
             }).finally(function () {
               $scope.queryFormatting = false;
             });

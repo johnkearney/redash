@@ -1,4 +1,4 @@
-from flask import request
+from flask import jsonify, request
 from flask_restful import abort
 from flask_login import login_required
 import sqlparse
@@ -21,7 +21,7 @@ def format_sql_query(org_slug=None):
     arguments = request.get_json(force=True)
     query = arguments.get("query", "")
 
-    return sqlparse.format(query, reindent=True, keyword_case='upper')
+    return jsonify({'query': sqlparse.format(query, reindent=True, keyword_case='upper')})
 
 
 class QuerySearchResource(BaseResource):
